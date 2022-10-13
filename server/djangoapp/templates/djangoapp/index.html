@@ -17,7 +17,11 @@
     <!-- Remove this line the first time you edit this file -->
      This is the index page of your Django app!
     <!--Add a nav bar here -->
-
+    <nav>
+        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="{% url 'djangoapp:about' %}">About</a>
+        <a class="navbar-brand" href="{% url 'djangoapp:contact' %}">Contact</a>
+    </nav>
     <!--Add a dealer table here -->
 
     </body>
