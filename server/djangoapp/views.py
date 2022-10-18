@@ -93,7 +93,7 @@ def get_dealerships(request):
     if request.method == "GET":
         context = {}
         url = "https://us-south.functions.appdomain.cloud/api/dealership"
-        dealerships = get_dealers_from_cf(url)
+        # dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
 
@@ -102,7 +102,7 @@ def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         context = {}
         url = "https://us-south.functions.appdomain.cloud/api/review/"
-        reviews = get_dealer_reviews_from_cf(url, dealer_id)
+        # reviews = get_dealer_reviews_from_cf(url, dealer_id)
         context["reviews"] = reviews
         dealer = get_dealer_from_cf_by_id(
             "https://us-south.functions.appdomain.cloud/api/dealership", dealer_id)
