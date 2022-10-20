@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-# from .models import related models
-# from .restapis import related methods
+from .models import related models
+from .restapis import related methods
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -92,9 +92,8 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context={}
-        url = "https://us-south.functions.appdomain.cloud/api/dealership"
-        apikey="6HrMtbuaJiKH0NaEdDNYOwaj3Bpz2cq9szqT2KycIOl8"
-        # Get dealers from the URL
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-dealership"
+        Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
         # Concat all dealer's short name
         context["dealership_list"]=dealerships
@@ -106,10 +105,9 @@ def get_dealerships(request):
 # def get_dealer_details(request, dealer_id):
 def get_dealer_details(request, dealer_id):
     context={}
-    url = "https://us-south.functions.appdomain.cloud/api/review"
-    apikey="6HrMtbuaJiKH0NaEdDNYOwaj3Bpz2cq9szqT2KycIOl8"
-    #print(dealer_id)
-    # Get dealers from the URL
+    url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-review"
+    print(dealer_id)
+    Get dealers from the URL
     dealer_details = get_dealer_reviews_from_cf(url,dealer_id)
     context["dealer_id"]=dealer_id
     context["reviews"]=dealer_details
@@ -119,14 +117,14 @@ def add_review(request, dealer_id):
     context = {}
     # If it is a GET request, just render the add_review page
     if request.method == 'GET':
-        url = "https://us-south.functions.appdomain.cloud/api/dealership"
-        # Get dealers from the URL
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/post-review"
+        Get dealers from the URL
         context = {
             "dealer_id": dealer_id,
             "dealer_name": get_dealers_from_cf(url)[dealer_id-1].full_name,
             "cars": CarModel.objects.all()
         }
-        #print(context)
+        print(context)
         return render(request, 'djangoapp/add_review.html', context)
     elif request.method == 'POST':
         if (request.user.is_authenticated):
