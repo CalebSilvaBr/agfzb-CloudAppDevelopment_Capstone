@@ -108,8 +108,8 @@ def get_dealer_reviews_from_cf(url, dealer_id):
 
 
 def analyze_review_sentiments(dealer_review):
-    API_KEY = "56Uu0KyzSNEZ8u71Q9Nu4eqYmSiLxsMV0otoCXFUCIam"
-    NLU_URL = 'https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/351966a8-a214-4fc1-a319-ea7f066c002c'
+    API_KEY = "2MePSKQBaedlfc29hLodD4A5d1l2gBbLitfxcxVf2aZL"
+    NLU_URL = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/679457c6-2b9c-4b7d-8d09-d0ffd92fbeaf"
     authenticator = IAMAuthenticator(API_KEY)
     natural_language_understanding = NaturalLanguageUnderstandingV1(
         version='2021-08-01', authenticator=authenticator)
