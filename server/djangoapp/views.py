@@ -67,7 +67,7 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://e29b86ca.eu-gb.apigw.appdomain.cloud/api/dealership"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-dealership"
         dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
@@ -76,11 +76,11 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         context = {}
-        url = "https://e29b86ca.eu-gb.apigw.appdomain.cloud/api/review/"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-review"
         reviews = get_dealer_reviews_from_cf(url, dealer_id)
         context["reviews"] = reviews
         dealer = get_dealer_from_cf_by_id(
-            "https://e29b86ca.eu-gb.apigw.appdomain.cloud/api/dealership", dealer_id)
+            "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-dealership", dealer_id)
         context["dealer"] = dealer
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -88,7 +88,7 @@ def get_dealer_details(request, dealer_id):
 def add_review(request, dealer_id):
     context = {}
     if request.method == "GET":
-        url = "https://e29b86ca.eu-gb.apigw.appdomain.cloud/api/dealership"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/get-dealership"
         dealer = get_dealer_from_cf_by_id(url, dealer_id)
         cars = CarModel.objects.filter(dealer_id=dealer_id)
         context["cars"] = cars
@@ -96,7 +96,7 @@ def add_review(request, dealer_id):
         return render(request, 'djangoapp/add_review.html', context)
 
     if request.method == "POST":
-        url = "https://e29b86ca.eu-gb.apigw.appdomain.cloud/api/review/"      
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/fda42a47-dbec-4357-8d7b-b6a93c2aca8c/dealership-package/post-review"      
         if 'purchasecheck' in request.POST:
             was_purchased = True
         else:
